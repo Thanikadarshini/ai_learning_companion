@@ -339,7 +339,7 @@ chat.scrollTop = chat.scrollHeight;
 try {
 
 const response = await fetch(
-"http://localhost:3000/chat",
+"/chat",
 {
 method: "POST",
 headers: {
@@ -350,6 +350,11 @@ message: userText
 })
 }
 );
+
+if (!response.ok) {
+  const text = await response.text();
+  throw new Error(text);
+}
 
 const data = await response.json(); 
 
