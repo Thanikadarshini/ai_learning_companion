@@ -351,12 +351,22 @@ message: userText
 }
 );
 
+
 if (!response.ok) {
   const text = await response.text();
   throw new Error(text);
 }
 
 const data = await response.json(); 
+
+console.log(data);
+
+chat.innerHTML += `
+<div class="msg ai">
+<strong>🤖 AI Tutor</strong><br><br>
+${data.reply.replace(/\n/g,"<br>")}
+</div>
+`;
 
 document.getElementById("loading").remove();
 
