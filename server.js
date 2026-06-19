@@ -10,11 +10,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
 
+console.log("API KEY EXISTS:", !!process.env.GROQ_API_KEY);
+
 const groq = new Groq({
 apiKey: process.env.GROQ_API_KEY
 });
 
 app.post("/chat", async (req, res) => {
+  console.log("Chat request received");
 
 try {
 
